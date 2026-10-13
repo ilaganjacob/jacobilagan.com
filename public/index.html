@@ -135,15 +135,14 @@
             mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
   }
   .hero-grid { display: grid; gap: 3.5rem; align-items: center; }
-  @media (min-width: 62rem) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; } }
-  .hero h1 { max-width: 14ch; }
+  @media (min-width: 62rem) { .hero-grid { grid-template-columns: 1.3fr 0.7fr; gap: 4rem; } }
+  .hero h1 { max-width: 16ch; font-size: clamp(2.4rem, 5vw, 3.6rem); }
   .hero .lead { margin-bottom: 2rem; }
-  .hero-note { font-size: 0.9375rem; color: var(--faint); margin: 1.25rem 0 0; }
-
+  
   /* Sample report */
   .report {
     background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-    box-shadow: var(--shadow-lift); padding: 1.5rem; max-width: 30rem; width: 100%; justify-self: center;
+    box-shadow: var(--shadow-lift); padding: 1.5rem; max-width: 22rem; width: 100%; justify-self: center;
     font-size: 0.9375rem;
   }
   .report-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); margin-bottom: 0.5rem; }
@@ -349,14 +348,12 @@
   .js .report .report-row:nth-of-type(1) { animation-delay: 0.5s; }
   .js .report .report-row:nth-of-type(2) { animation-delay: 0.9s; }
   .js .report .report-row:nth-of-type(3) { animation-delay: 1.3s; }
-  .js .report .report-row:nth-of-type(4) { animation-delay: 1.7s; }
-  .js .report .report-flag { animation-delay: 2.3s; }
+  .js .report .report-flag { animation-delay: 1.9s; }
   .js .report .tick svg path { stroke-dasharray: 20; stroke-dashoffset: 20; animation: draw 0.5s ease forwards; animation-delay: inherit; }
   .js .report .report-row:nth-of-type(1) .tick svg path { animation-delay: 0.8s; }
   .js .report .report-row:nth-of-type(2) .tick svg path { animation-delay: 1.2s; }
   .js .report .report-row:nth-of-type(3) .tick svg path { animation-delay: 1.6s; }
-  .js .report .report-row:nth-of-type(4) .tick svg path { animation-delay: 2.0s; }
-  .js .report .tick.warn { animation: pulse 1.6s ease-out 2.3s 2; }
+  .js .report .tick.warn { animation: pulse 1.6s ease-out 1.9s 2; }
   @keyframes rise { to { opacity: 1; transform: none; } }
   @keyframes draw { to { stroke-dashoffset: 0; } }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(29, 79, 74, 0.45); } 100% { box-shadow: 0 0 0 12px rgba(29, 79, 74, 0); } }
@@ -396,14 +393,13 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">WooCommerce + QuickBooks</p>
+        <p class="eyebrow">WooCommerce + QuickBooks · Toronto</p>
         <h1 id="hero-title">Every order on your store, in your books.</h1>
-        <p class="lead">Nothing lost, nothing faked. I catch missing orders, fraud, and sync failures in hours, not months later at tax time.</p>
+        <p class="lead">I catch missing orders, sync failures, and fraud before your accountant does.</p>
         <a class="btn" href="https://cal.com/jacob-ilagan/order-audit">
           Book a free order audit
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <p class="hero-note">Based in Toronto. For Canadian stores doing $20k to $300k a month, with no in-house developer.</p>
       </div>
 
       <figure class="report" aria-label="Sample monthly reconciliation report">
@@ -413,23 +409,18 @@
         </div>
         <div class="report-row">
           <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-          <span>WooCommerce orders</span><span class="num">412</span>
+          <span>Store</span><span class="num">412</span>
         </div>
         <div class="report-row">
           <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-          <span>Payment processor</span><span class="num">412</span>
+          <span>Processor</span><span class="num">412</span>
         </div>
         <div class="report-row">
           <span class="tick warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v9M12 19v.5"/></svg></span>
-          <span>QuickBooks sales</span><span class="num">411</span>
-        </div>
-        <div class="report-row">
-          <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-          <span>Card-testing orders kept out of the books</span><span class="num">3</span>
+          <span>QuickBooks</span><span class="num">411</span>
         </div>
         <div class="report-flag">
           <strong>1 paid order missing from QuickBooks</strong>
-          <span>Stuck in a status the sync ignores. Flagged for review the same day.</span>
         </div>
       </figure>
     </div>
@@ -656,7 +647,7 @@
           <p class="founding"><strong>Founding rate: $200/month.</strong> For the first 3 clients, locked for 6 months, in exchange for a testimonial and case study rights.</p>
         </article>
       </div>
-      <p class="price-notes">All prices in Canadian dollars.</p>
+      <p class="price-notes">Built for stores doing $20k to $300k a month, with no in-house developer. All prices in Canadian dollars.</p>
     </div>
   </section>
 
