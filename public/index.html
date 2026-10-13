@@ -13,177 +13,367 @@
 <meta property="og:site_name" content="Jacob Ilagan">
 <meta property="og:title" content="Every order on your store, in your books. Nothing lost, nothing faked.">
 <meta property="og:description" content="WooCommerce and QuickBooks order monitoring for growing stores. Missing orders, sync failures, and card-testing fraud caught in hours. Start with a free order audit.">
-<meta property="og:image" content="https://jacobilagan.com/headshot.jpg">
-<meta property="og:image:alt" content="Portrait of Jacob Ilagan">
+<meta property="og:image" content="https://jacobilagan.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Every order on your store, in your books. WooCommerce and QuickBooks order integrity by Jacob Ilagan.">
 <meta property="og:locale" content="en_CA">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Every order on your store, in your books. Nothing lost, nothing faked.">
 <meta name="twitter:description" content="WooCommerce and QuickBooks order monitoring for growing stores. Start with a free order audit.">
-<meta name="twitter:image" content="https://jacobilagan.com/headshot.jpg">
+<meta name="twitter:image" content="https://jacobilagan.com/og-image.png">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4f4a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d4f4a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<script>document.documentElement.classList.add('js')</script>
 
 <style>
   :root {
-    --ink: #1c2321;
-    --muted: #4d5754;
-    --line: #dfe3e1;
-    --paper: #ffffff;
-    --tint: #f5f7f6;
+    --ink: #17201e;
+    --muted: #4f5a57;
+    --faint: #7a8582;
+    --line: #e2e5e1;
+    --paper: #fbfaf7;
+    --card: #ffffff;
+    --tint: #f3f2ec;
     --accent: #1d4f4a;
-    --accent-dark: #143a36;
-    --accent-soft: #e7efed;
-    --radius: 6px;
-    --wrap: 68rem;
-    --narrow: 44rem;
+    --accent-dark: #123632;
+    --accent-mid: #2f6d66;
+    --accent-soft: #e5eeeb;
+    --on-accent: #ffffff;
+    --on-accent-muted: #c4d8d4;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 1px 2px rgba(23, 32, 30, 0.04), 0 8px 24px -12px rgba(23, 32, 30, 0.12);
+    --shadow-lift: 0 2px 4px rgba(23, 32, 30, 0.05), 0 20px 40px -16px rgba(23, 32, 30, 0.22);
+    --wrap: 72rem;
+    --serif: ui-serif, "Iowan Old Style", "Charter", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
     color-scheme: light;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   body {
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--sans);
     font-size: 1.0625rem;
     line-height: 1.65;
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   img { max-width: 100%; height: auto; display: block; }
-
   a { color: var(--accent); text-underline-offset: 0.18em; }
   a:hover { color: var(--accent-dark); }
-
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  :focus-visible { outline: 3px solid var(--accent-mid); outline-offset: 3px; border-radius: 4px; }
 
   .skip {
-    position: absolute; left: 1rem; top: -4rem;
-    background: var(--accent); color: #fff; padding: 0.6rem 1rem; border-radius: var(--radius);
-    text-decoration: none; z-index: 10;
+    position: absolute; left: 1rem; top: -4rem; z-index: 20;
+    background: var(--accent); color: var(--on-accent); padding: 0.6rem 1rem; border-radius: var(--radius-sm); text-decoration: none;
   }
-  .skip:focus { top: 1rem; color: #fff; }
+  .skip:focus { top: 1rem; color: var(--on-accent); }
 
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 1.25rem; }
-  .narrow { max-width: var(--narrow); }
 
-  h1, h2, h3 { line-height: 1.25; color: var(--ink); margin: 0 0 0.75rem; font-weight: 650; }
-  h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; }
-  h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); letter-spacing: -0.01em; }
-  h3 { font-size: 1.2rem; }
+  h1, h2, h3 { margin: 0 0 0.75rem; color: var(--ink); line-height: 1.15; }
+  h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.015em; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); }
+  h3 { font-size: 1.2rem; font-weight: 650; line-height: 1.3; }
   p { margin: 0 0 1rem; }
 
   .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
     font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--accent); margin: 0 0 0.75rem;
+    color: var(--accent); margin: 0 0 1rem;
   }
-  .lead { font-size: 1.1875rem; color: var(--muted); }
+  .eyebrow::before { content: ""; width: 1.25rem; height: 2px; background: currentColor; border-radius: 2px; }
+  .lead { font-size: 1.1875rem; color: var(--muted); max-width: 38rem; }
 
-  section { padding: 5rem 0; }
-  section.tint { background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .section-head { margin-bottom: 2.5rem; }
+  section { padding: 6rem 0; }
+  .section-head { max-width: 44rem; margin-bottom: 3rem; }
 
   /* Header */
-  .site-header { border-bottom: 1px solid var(--line); }
-  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
-  .brand { font-weight: 650; color: var(--ink); text-decoration: none; }
-  .site-header nav a { font-size: 0.9375rem; }
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251, 250, 247, 0.82);
+    -webkit-backdrop-filter: saturate(160%) blur(12px); backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid transparent; transition: border-color 0.2s ease;
+  }
+  .site-header.scrolled { border-bottom-color: var(--line); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 650; color: var(--ink); text-decoration: none; }
+  .brand-mark { width: 1.75rem; height: 1.75rem; border-radius: 8px; background: var(--accent); display: grid; place-items: center; }
+  .btn-sm { font-size: 0.9375rem; padding: 0.55rem 1rem; }
 
   /* Buttons */
   .btn {
-    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-    font-weight: 600; padding: 0.9rem 1.5rem; border-radius: var(--radius);
-    border: 2px solid var(--accent); transition: background-color 0.15s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: 600;
+    padding: 0.95rem 1.6rem; border-radius: 999px; border: 0;
+    box-shadow: 0 1px 2px rgba(18, 54, 50, 0.2), 0 8px 20px -8px rgba(18, 54, 50, 0.5);
+    transition: background-color 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s ease;
   }
-  .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
-  .note { font-size: 0.9375rem; color: var(--muted); margin-top: 1rem; }
+  .btn:hover { background: var(--accent-dark); color: var(--on-accent); transform: translateY(-1px); }
+  .btn svg { transition: transform 0.2s var(--ease); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn.btn-sm { box-shadow: none; }
+  .btn-light { background: var(--on-accent); color: var(--accent-dark); }
+  .btn-light:hover { background: var(--accent-soft); color: var(--accent-dark); }
 
   /* Hero */
-  .hero { padding: 6rem 0 5rem; }
-  .hero h1 { max-width: 20ch; }
-  .hero .lead { max-width: 40rem; margin-bottom: 2rem; }
-
-  /* Grids */
-  .grid-3 { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
-  .card {
-    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 1.75rem;
+  .hero { position: relative; padding: 5rem 0 4rem; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(29, 79, 74, 0.07) 31px, rgba(29, 79, 74, 0.07) 32px);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, #000 20%, transparent 75%);
   }
+  .hero-grid { display: grid; gap: 3.5rem; align-items: center; }
+  @media (min-width: 62rem) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; } }
+  .hero h1 { max-width: 14ch; }
+  .hero .lead { margin-bottom: 2rem; }
+  .hero-note { font-size: 0.9375rem; color: var(--faint); margin: 1.25rem 0 0; }
+
+  /* Sample report */
+  .report {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow-lift); padding: 1.5rem; max-width: 30rem; width: 100%; justify-self: center;
+    font-size: 0.9375rem;
+  }
+  .report-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); margin-bottom: 0.5rem; }
+  .report-title { font-weight: 650; }
+  .report-tag { font-size: 0.75rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .report-row { display: grid; grid-template-columns: 1.5rem 1fr auto; align-items: center; gap: 0.75rem; padding: 0.7rem 0; border-bottom: 1px dashed var(--line); }
+  .report-row:last-of-type { border-bottom: 0; }
+  .report-row .num { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .tick { width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--accent-soft); display: grid; place-items: center; color: var(--accent); }
+  .tick.warn { background: var(--accent); color: var(--on-accent); }
+  .report-flag {
+    margin-top: 0.75rem; border-radius: var(--radius-sm); background: var(--accent-soft);
+    padding: 0.9rem 1rem; display: grid; gap: 0.15rem; border-left: 3px solid var(--accent);
+  }
+  .report-flag strong { color: var(--accent-dark); }
+  .report-flag span { color: var(--muted); font-size: 0.875rem; }
+
+  /* Stats */
+  .stats { padding: 0 0 2rem; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .stat { padding: 1.75rem 1.25rem; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat-num { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stat-label { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.9375rem; }
+  @media (max-width: 40rem) {
+    .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+  }
+
+  /* Cards */
+  .grid-3 { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+  .card {
+    position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 2rem; box-shadow: var(--shadow);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: #d3d9d5; }
   .card p:last-child { margin-bottom: 0; }
+  .card p { color: var(--muted); }
+  .icon {
+    width: 3rem; height: 3rem; border-radius: 12px; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent); margin-bottom: 1.5rem;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+  .card:hover .icon { background: var(--accent); color: var(--on-accent); }
 
   /* Steps */
-  .steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
-  .steps li { counter-increment: step; }
-  .steps .card h3::before {
-    content: counter(step);
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 2rem; height: 2rem; margin-right: 0.75rem; border-radius: 50%;
-    background: var(--accent-soft); color: var(--accent); font-size: 0.9375rem; font-weight: 700;
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; position: relative; }
+  @media (min-width: 52rem) {
+    .steps { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .steps::before {
+      content: ""; position: absolute; top: 1.5rem; left: 1.5rem; right: calc(33.333% - 1.5rem); height: 2px;
+      background: linear-gradient(to right, var(--accent) 0, var(--accent) var(--progress, 100%), var(--line) var(--progress, 100%));
+    }
   }
-  .step-meta { font-size: 0.9375rem; color: var(--muted); margin-top: 0.5rem; }
+  .step-num {
+    position: relative; width: 3rem; height: 3rem; border-radius: 50%;
+    background: var(--paper); border: 2px solid var(--accent); color: var(--accent);
+    display: grid; place-items: center; font-weight: 700; margin-bottom: 1.25rem;
+  }
+  .step p { color: var(--muted); margin: 0; max-width: 22rem; }
 
   /* Case studies */
-  .case { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; }
-  .case:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
-  .case-label { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.25rem; }
-  .result {
-    background: var(--accent-soft); border-left: 4px solid var(--accent);
-    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.25rem 0 2rem;
+  .tint { background: var(--tint); }
+  .cases { display: grid; gap: 1.25rem; }
+  @media (min-width: 56rem) { .cases { grid-template-columns: 1fr 1fr; } }
+  .case { display: flex; flex-direction: column; }
+  .case-kicker { font-size: 0.8125rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+  .case-stat { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 5rem); line-height: 0.95; color: var(--accent); margin: 0 0 0.5rem; }
+  .case-stat-label { font-weight: 600; color: var(--ink) !important; margin-bottom: 1.5rem; }
+  .case h3 { font-size: 1.3rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .tags li { font-size: 0.8125rem; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--tint); color: var(--muted); }
+  .case details { margin-top: auto; border-top: 1px solid var(--line); padding-top: 1rem; }
+  .case summary {
+    cursor: pointer; list-style: none; font-weight: 600; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 0.5rem;
   }
-  .result strong { color: var(--accent-dark); }
-  .case h4 { font-size: 1rem; margin: 1.75rem 0 0.5rem; }
-  .case ul, .case ol { padding-left: 1.25rem; margin: 0 0 1rem; }
-  .case li { margin-bottom: 0.5rem; }
-  .lesson { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.75rem; }
-  .lesson p:last-child { margin-bottom: 0; }
+  .case summary::-webkit-details-marker { display: none; }
+  .case summary svg { transition: transform 0.3s var(--ease); }
+  .case details[open] summary svg { transform: rotate(45deg); }
+  .story { padding-top: 1rem; color: var(--muted); font-size: 0.975rem; }
+  .story h4 { color: var(--ink); font-size: 0.9375rem; margin: 1.25rem 0 0.4rem; }
+  .story ul, .story ol { padding-left: 1.2rem; margin: 0 0 0.75rem; }
+  .story li { margin-bottom: 0.4rem; }
+
+  .lesson {
+    margin-top: 1.25rem; padding: 2rem; border-radius: var(--radius);
+    background: var(--accent); color: var(--on-accent-muted);
+    display: grid; gap: 0.5rem;
+  }
+  @media (min-width: 52rem) { .lesson { grid-template-columns: 14rem 1fr; gap: 2rem; align-items: center; } }
+  .lesson strong { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; line-height: 1.2; color: var(--on-accent); }
+  .lesson p { margin: 0; }
 
   /* Pricing */
-  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
-  table { width: 100%; border-collapse: collapse; font-size: 1rem; }
-  caption { text-align: left; padding: 1rem 1.25rem; font-weight: 600; border-bottom: 1px solid var(--line); }
-  th, td { text-align: left; vertical-align: top; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--line); }
-  thead th { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--tint); }
-  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
-  tbody th { font-weight: 650; white-space: nowrap; }
-  td.price { white-space: nowrap; font-weight: 600; }
-  td.price small { display: block; font-weight: 400; color: var(--muted); white-space: normal; max-width: 12rem; }
-  .price-notes { margin-top: 1rem; color: var(--muted); font-size: 0.9375rem; }
+  .plans { display: grid; gap: 1.25rem; align-items: stretch; }
+  @media (min-width: 56rem) { .plans { grid-template-columns: 1fr 1fr 1.15fr; } }
+  .plan { display: flex; flex-direction: column; }
+  .plan-name { font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 1rem; }
+  .plan-price { font-family: var(--serif); font-size: 2.75rem; line-height: 1; margin: 0 0 0.35rem; color: var(--ink); }
+  .plan-price small { font-family: var(--sans); font-size: 1rem; color: var(--muted); }
+  .plan-sub { font-size: 0.9375rem; min-height: 1.5em; }
+  .checks { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.6rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .checks li { display: grid; grid-template-columns: 1.25rem 1fr; gap: 0.6rem; font-size: 0.975rem; color: var(--ink); }
+  .checks svg { margin-top: 0.3rem; color: var(--accent); }
 
-  @media (max-width: 40rem) {
-    table, thead, tbody, tr, th, td { display: block; }
-    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    tbody tr { border-bottom: 1px solid var(--line); padding: 1rem 1.25rem; }
-    tbody tr:last-child { border-bottom: 0; }
-    tbody th, td { border: 0; padding: 0.2rem 0; white-space: normal; }
-    tbody th { font-size: 1.0625rem; }
-    td.price { margin-top: 0.5rem; }
+  .plan.featured { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--on-accent-muted); }
+  .plan.featured:hover { border-color: var(--accent-dark); }
+  .plan.featured .plan-name, .plan.featured .plan-sub, .plan.featured p { color: var(--on-accent-muted); }
+  .plan.featured .plan-price { color: var(--on-accent); }
+  .plan.featured .plan-price small { color: var(--on-accent-muted); }
+  .plan.featured .checks { border-top-color: rgba(255, 255, 255, 0.15); }
+  .plan.featured .checks li { color: var(--on-accent); }
+  .plan.featured .checks svg { color: #9fd1c8; }
+  .badge {
+    position: absolute; top: 1.5rem; right: 1.5rem; font-size: 0.75rem; font-weight: 600;
+    padding: 0.3rem 0.7rem; border-radius: 999px; background: rgba(255, 255, 255, 0.12); color: var(--on-accent);
   }
+  .founding {
+    margin-top: 1.5rem; padding: 1rem 1.1rem; border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(255, 255, 255, 0.25); font-size: 0.9375rem;
+  }
+  .founding strong { color: var(--on-accent); }
+  .price-notes { margin-top: 1.5rem; color: var(--faint); font-size: 0.9375rem; }
 
   /* About */
-  .about { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
-  @media (min-width: 48rem) { .about { grid-template-columns: 15rem 1fr; gap: 3.5rem; } }
-  .headshot { width: 15rem; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--accent-soft); }
-  .creds { padding-left: 1.25rem; margin: 1.25rem 0 0; }
-  .creds li { margin-bottom: 0.5rem; }
+  .about { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 52rem) { .about { grid-template-columns: 18rem 1fr; gap: 4rem; } }
+  .photo-frame { position: relative; width: 18rem; max-width: 100%; }
+  .photo-frame::before {
+    content: ""; position: absolute; inset: 0; transform: translate(14px, 14px);
+    border-radius: var(--radius); border: 2px solid var(--accent); z-index: 0;
+  }
+  .headshot { position: relative; z-index: 1; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--accent-soft); }
+  .about p { color: var(--muted); max-width: 38rem; }
 
   /* Final CTA */
-  .final { text-align: center; }
-  .final .narrow { margin: 0 auto; }
+  .cta-panel {
+    position: relative; overflow: hidden; text-align: center;
+    background: var(--accent); color: var(--on-accent-muted); border-radius: 24px;
+    padding: clamp(3rem, 8vw, 5.5rem) 1.5rem;
+  }
+  .cta-panel::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(255, 255, 255, 0.06) 31px, rgba(255, 255, 255, 0.06) 32px);
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000 10%, transparent 70%);
+            mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000 10%, transparent 70%);
+  }
+  .cta-panel > * { position: relative; }
+  .cta-panel h2 { color: var(--on-accent); max-width: 18ch; margin: 0 auto 1rem; }
+  .cta-panel p { max-width: 34rem; margin: 0 auto 2rem; font-size: 1.125rem; }
+
+  .cta-alt { margin: 1.5rem auto 0 !important; font-size: 0.9375rem !important; }
+
+  /* Copy email */
+  .email-line { display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+  .copy-btn {
+    font: inherit; font-size: 0.8125rem; font-weight: 600; cursor: pointer;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: transparent; color: inherit; border: 1px solid currentColor; opacity: 0.85;
+  }
+  .copy-btn:hover { opacity: 1; }
+  .cta-panel .email-line a { color: var(--on-accent); }
+
+  /* Audit checklist */
+  .audit-box {
+    margin-top: 3rem; display: grid; gap: 2rem; padding: 2.25rem;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  @media (min-width: 56rem) { .audit-box { grid-template-columns: 17rem 1fr; gap: 3rem; } }
+  .audit-box h3 { font-family: var(--serif); font-weight: 500; font-size: 1.6rem; line-height: 1.2; }
+  .audit-box > div > p { color: var(--muted); margin: 0; }
+  .audit-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.85rem 2rem; }
+  @media (min-width: 40rem) { .audit-list { grid-template-columns: 1fr 1fr; } }
+  .audit-list li { display: grid; grid-template-columns: 1.25rem 1fr; gap: 0.6rem; font-size: 0.975rem; }
+  .audit-list svg { margin-top: 0.3rem; color: var(--accent); }
+
+  /* FAQ */
+  .faq { max-width: 48rem; border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    padding: 1.4rem 0; font-weight: 600; font-size: 1.0625rem;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary svg { flex: none; color: var(--accent); transition: transform 0.3s var(--ease); }
+  .faq details[open] summary svg { transform: rotate(45deg); }
+  .faq details p { color: var(--muted); margin: 0 0 1.4rem; max-width: 40rem; }
 
   /* Footer */
-  footer { border-top: 1px solid var(--line); padding: 2rem 0; font-size: 0.9375rem; color: var(--muted); }
+  footer { padding: 2.5rem 0; font-size: 0.9375rem; color: var(--faint); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
   footer p { margin: 0; }
 
+  /* Motion */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); transition-delay: var(--d, 0s); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  .js .report .report-row, .js .report .report-flag { opacity: 0; transform: translateY(8px); animation: rise 0.6s var(--ease) forwards; }
+  .js .report .report-row:nth-of-type(1) { animation-delay: 0.5s; }
+  .js .report .report-row:nth-of-type(2) { animation-delay: 0.9s; }
+  .js .report .report-row:nth-of-type(3) { animation-delay: 1.3s; }
+  .js .report .report-row:nth-of-type(4) { animation-delay: 1.7s; }
+  .js .report .report-flag { animation-delay: 2.3s; }
+  .js .report .tick svg path { stroke-dasharray: 20; stroke-dashoffset: 20; animation: draw 0.5s ease forwards; animation-delay: inherit; }
+  .js .report .report-row:nth-of-type(1) .tick svg path { animation-delay: 0.8s; }
+  .js .report .report-row:nth-of-type(2) .tick svg path { animation-delay: 1.2s; }
+  .js .report .report-row:nth-of-type(3) .tick svg path { animation-delay: 1.6s; }
+  .js .report .report-row:nth-of-type(4) .tick svg path { animation-delay: 2.0s; }
+  .js .report .tick.warn { animation: pulse 1.6s ease-out 2.3s 2; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(29, 79, 74, 0.45); } 100% { box-shadow: 0 0 0 12px rgba(29, 79, 74, 0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal, .js .report .report-row, .js .report .report-flag { opacity: 1; transform: none; }
+    .js .report .tick svg path { stroke-dashoffset: 0; }
+  }
+
   @media (max-width: 40rem) {
-    section { padding: 3.5rem 0; }
-    .hero { padding: 3.5rem 0 3rem; }
-    .site-header nav { display: none; }
-    .btn { display: block; text-align: center; }
+    section { padding: 4rem 0; }
+    .hero { padding: 3rem 0 3rem; }
+    .hero .btn { width: 100%; }
+    .card { padding: 1.5rem; }
+    .site-header .btn-sm { padding: 0.5rem 0.9rem; }
   }
 </style>
 </head>
@@ -192,10 +382,11 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">Jacob Ilagan</a>
-    <nav aria-label="Primary">
-      <a href="mailto:jacob@jacobilagan.com?subject=Order%20audit">jacob@jacobilagan.com</a>
-    </nav>
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+      Jacob Ilagan
+    </a>
+    <a class="btn btn-sm" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">Free audit</a>
   </div>
 </header>
 
@@ -203,214 +394,334 @@
 
   <!-- 1. Hero -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="wrap">
-      <p class="eyebrow">WooCommerce + QuickBooks order integrity</p>
-      <h1 id="hero-title">Every order on your store, in your books. Nothing lost, nothing faked.</h1>
-      <p class="lead">I monitor your WooCommerce store and its QuickBooks sync so missing orders, fraud, and sync failures get caught in hours, not discovered months later by your accountant.</p>
-      <a class="btn" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">Book a free order audit</a>
-      <p class="note">For stores doing roughly $20k to $300k a month, with no in-house developer.</p>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">WooCommerce + QuickBooks</p>
+        <h1 id="hero-title">Every order on your store, in your books.</h1>
+        <p class="lead">Nothing lost, nothing faked. I catch missing orders, fraud, and sync failures in hours, not months later at tax time.</p>
+        <a class="btn" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">
+          Book a free order audit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="hero-note">Based in Toronto. For Canadian stores doing $20k to $300k a month, with no in-house developer.</p>
+      </div>
+
+      <figure class="report" aria-label="Sample monthly reconciliation report">
+        <div class="report-head">
+          <span class="report-title">Monthly reconciliation</span>
+          <span class="report-tag">Sample</span>
+        </div>
+        <div class="report-row">
+          <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+          <span>WooCommerce orders</span><span class="num">412</span>
+        </div>
+        <div class="report-row">
+          <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+          <span>Payment processor</span><span class="num">412</span>
+        </div>
+        <div class="report-row">
+          <span class="tick warn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v9M12 19v.5"/></svg></span>
+          <span>QuickBooks sales</span><span class="num">411</span>
+        </div>
+        <div class="report-row">
+          <span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+          <span>Card-testing orders kept out of the books</span><span class="num">3</span>
+        </div>
+        <div class="report-flag">
+          <strong>1 paid order missing from QuickBooks</strong>
+          <span>Stuck in a status the sync ignores. Flagged for review the same day.</span>
+        </div>
+      </figure>
     </div>
   </section>
 
-  <!-- 2. The problem -->
-  <section class="tint" aria-labelledby="problem-title">
+  <!-- Proof -->
+  <div class="stats">
     <div class="wrap">
-      <div class="section-head narrow">
+      <div class="stats-grid">
+        <div class="stat reveal"><div class="stat-num" data-count="192000" data-format="comma">192,000</div><p class="stat-label">users on the commerce platform I build for</p></div>
+        <div class="stat reveal" style="--d:0.1s"><div class="stat-num" data-count="600" data-suffix="+">600+</div><p class="stat-label">automated tests on that platform</p></div>
+        <div class="stat reveal" style="--d:0.2s"><div class="stat-num" data-count="99" data-suffix="%">99%</div><p class="stat-label">of products matched to QuickBooks automatically</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. The problem -->
+  <section aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="section-head reveal">
         <p class="eyebrow">The problem</p>
-        <h2 id="problem-title">Your store will not tell you what it lost.</h2>
-        <p class="lead">Most order problems are silent. You find out at month end, or when your accountant asks why the numbers don't match.</p>
+        <h2 id="problem-title">Your store won't tell you what it lost.</h2>
+        <p class="lead">Most order problems are silent. You find out at month end, when the numbers don't match.</p>
       </div>
       <div class="grid-3">
-        <article class="card">
+        <article class="card reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9.5 12.5l5 5M14.5 12.5l-5 5"/></svg></div>
           <h3>Missing orders</h3>
-          <p>An order can be deleted completely. When that happens, your store has no record of it. The only way to catch it is to compare the store against outside records.</p>
+          <p>A fully deleted order leaves no record. Your store can't tell you it's gone.</p>
         </article>
-        <article class="card">
-          <h3>QuickBooks sync failures</h3>
-          <p>A sync can stop without warning. Orders get stuck in a status the sync ignores, or a tax setting blocks them from posting. Sales stop reaching your books.</p>
+        <article class="card reveal" style="--d:0.1s">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/><path d="M4 4l16 16"/></svg></div>
+          <h3>Sync failures</h3>
+          <p>Syncs stop quietly. Stuck statuses and tax settings keep sales out of your books.</p>
         </article>
-        <article class="card">
+        <article class="card reveal" style="--d:0.2s">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
           <h3>Card-testing fraud</h3>
-          <p>Bots place waves of tiny charges with throwaway emails. They clutter your orders, cost you fees, and can end up in your accounting as fake sales.</p>
+          <p>Bots place waves of tiny charges. They cost you fees and can land in your books as fake sales.</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- 3. How it works -->
-  <section aria-labelledby="how-title">
+  <section aria-labelledby="how-title" style="padding-top:0">
     <div class="wrap">
-      <div class="section-head narrow">
+      <div class="section-head reveal">
         <p class="eyebrow">How it works</p>
-        <h2 id="how-title">Three steps. You can stop after the first.</h2>
+        <h2 id="how-title">Three steps. Stop after the first if you like.</h2>
       </div>
-      <ol class="steps grid-3">
-        <li class="card">
+      <ol class="steps" id="steps">
+        <li class="step reveal">
+          <div class="step-num">1</div>
           <h3>Free audit</h3>
-          <p>A 30 to 60 minute review of your orders, trash, sync health, fraud signs, and checkout protection. You get written findings, yours to keep.</p>
-          <p class="step-meta">Free</p>
+          <p>I review your orders, sync, and fraud signs. You keep the written findings.</p>
         </li>
-        <li class="card">
+        <li class="step reveal" style="--d:0.15s">
+          <div class="step-num">2</div>
           <h3>Setup</h3>
-          <p>I fix what the audit found, install monitoring, and reconcile the last 90 days to set a clean baseline.</p>
-          <p class="step-meta">One time</p>
+          <p>I fix what I found, install monitoring, and reconcile the last 90 days.</p>
         </li>
-        <li class="card">
+        <li class="step reveal" style="--d:0.3s">
+          <div class="step-num">3</div>
           <h3>Monthly plan</h3>
-          <p>Daily order and sync monitoring. Alerts on missing or stuck orders. Card-testing detection. A monthly report comparing your store, QuickBooks, and payment processor.</p>
-          <p class="step-meta">Monthly, cancel anytime</p>
+          <p>I watch every day and send you a reconciliation report each month.</p>
         </li>
       </ol>
+
+      <div class="audit-box reveal" aria-labelledby="audit-title">
+        <div>
+          <h3 id="audit-title">What the free audit checks</h3>
+          <p>You get a one-page report: what's healthy, what's at risk, and what to fix first. It's yours to keep, whether you hire me or not.</p>
+        </div>
+        <ul class="audit-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Orders in the trash, and whether any were paid</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Orders stuck in statuses your sync ignores</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Cleanup jobs that delete orders automatically</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Card-testing signs and fraud charges to refund</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Last 30 days: store vs. QuickBooks vs. processor</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Sync errors and tax settings that block posting</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Backups, updates, and security plugins</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Passwords or keys left in docs or code</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- 4. Case studies -->
   <section class="tint" aria-labelledby="cases-title">
-    <div class="wrap narrow">
-      <div class="section-head">
+    <div class="wrap">
+      <div class="section-head reveal">
         <p class="eyebrow">Case studies</p>
         <h2 id="cases-title">Recent work</h2>
         <p class="lead">Client details are kept anonymous.</p>
       </div>
 
-      <article class="case" aria-labelledby="case-a">
-        <p class="case-label">Case study A</p>
-        <h3 id="case-a">Wholesale distributor moves to WooCommerce with QuickBooks Desktop sync</h3>
-        <p class="result"><strong>Result:</strong> 2,400+ products live with three dealer pricing tiers, and 99% of products matched to QuickBooks automatically.</p>
+      <div class="cases">
+        <article class="card case reveal" aria-labelledby="case-a">
+          <p class="case-kicker">Wholesale distributor</p>
+          <p class="case-stat">99%</p>
+          <p class="case-stat-label">of 2,478 products matched to QuickBooks automatically</p>
+          <h3 id="case-a">A wholesale catalog moves to WooCommerce</h3>
+          <p>Product data was split across two systems, with three dealer pricing tiers and 93 exceptions. I merged the data, set up two-way QuickBooks Desktop sync, and fixed what blocked orders from posting.</p>
+          <ul class="tags" aria-label="Topics">
+            <li>QuickBooks Desktop</li><li>B2B pricing</li><li>2,400+ products</li>
+          </ul>
+          <details>
+            <summary><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Read the full story</summary>
+            <div class="story">
+              <h4>The client</h4>
+              <p>A B2B wholesale distributor of hot tub and pool parts, selling to dealers, technicians, and contractors. Leaving a legacy e-commerce platform, with accounting in QuickBooks Desktop on a local office machine.</p>
+              <h4>The problem</h4>
+              <ul>
+                <li>Prices lived in the QuickBooks price list. Categories and images lived in the old platform's export. Some products existed in only one of them.</li>
+                <li>Three customer tiers with different discounts, plus 93 products where the top tier pays a different rate.</li>
+                <li>Orders had to reach QuickBooks Desktop on a local PC, not a cloud system.</li>
+              </ul>
+              <h4>What I did</h4>
+              <ol>
+                <li>Wrote a Python data merge that joined both sources on SKU, calculated every price tier, flagged the exceptions, and produced review reports. The owner signed off before anything was imported.</li>
+                <li>Imported the full catalog and configured B2B tiered pricing with override rules for every exception. Prices are hidden from guests.</li>
+                <li>Migrated the site to production after the standard migration tool failed on size, compressing it by 65% with a different approach.</li>
+                <li>Set up two-way sync. Orders, customers, and payments flow into QuickBooks as sales orders for staff review. Inventory flows back to the store hourly.</li>
+                <li>Debugged the integration end to end: an outdated TLS certificate on the office PC, orders stuck in a status the sync ignored, and a sales tax code error that blocked posting.</li>
+              </ol>
+              <h4>Outcome</h4>
+              <ul>
+                <li>2,455 of 2,478 products matched automatically. The remaining 23 were discontinued or placeholder items.</li>
+                <li>All 93 pricing exceptions configured as specified.</li>
+                <li>Staff review every web order in QuickBooks instead of re-keying it.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
 
-        <h4>The client</h4>
-        <p>A B2B wholesale distributor of hot tub and pool parts, selling to dealers, technicians, and contractors. Leaving a legacy e-commerce platform, with accounting in QuickBooks Desktop running on a local office machine.</p>
+        <article class="card case reveal" style="--d:0.12s" aria-labelledby="case-b">
+          <p class="case-kicker">Hot tub retailer</p>
+          <p class="case-stat">15</p>
+          <p class="case-stat-label">removed orders traced, with fraud separated from real sales</p>
+          <h3 id="case-b">The order that disappeared without a trace</h3>
+          <p>Orders were vanishing, and sales had stopped reaching QuickBooks. Most were card-testing fraud. But I also proved one real, paid order had been erased completely, something the store's own records could not show.</p>
+          <ul class="tags" aria-label="Topics">
+            <li>QuickBooks Online</li><li>Fraud</li><li>Database forensics</li>
+          </ul>
+          <details>
+            <summary><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Read the full story</summary>
+            <div class="story">
+              <h4>The client</h4>
+              <p>A hot tub retailer selling parts online through WooCommerce, with accounting in QuickBooks Online.</p>
+              <h4>The problem</h4>
+              <p>Orders were vanishing from the store while still showing up elsewhere. Separately, website sales had stopped reaching QuickBooks. Nobody could say what was missing or why.</p>
+              <h4>What I did</h4>
+              <ol>
+                <li>Mapped where the store keeps its orders. Wrote forensic database queries to profile every status, list trashed orders, and sweep for paid orders no longer live.</li>
+                <li>Found that most disappearing orders were card-testing fraud, cleared in daily batches. Of 15 removed orders, 14 never took payment. I flagged the one that did so it could be refunded.</li>
+                <li>Built a risk flag that marks any removed order as paid if it had payment evidence before deletion.</li>
+                <li>The owner then produced a supplier invoice for a real order that should have existed. I searched by name, address, phone, postal code, part number, and user account. Nothing. The order and its line items were gone entirely.</li>
+                <li>Documented everything in a handoff report and set up a new QuickBooks sync that only posts paid orders, so fraud never reaches the books.</li>
+              </ol>
+              <h4>Outcome</h4>
+              <ul>
+                <li>15 removed orders analyzed and classified.</li>
+                <li>One genuine paid order proven lost, exposing a blind spot a database check alone can't catch.</li>
+                <li>Fraud kept out of accounting going forward.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+      </div>
 
-        <h4>The problem</h4>
-        <ul>
-          <li>Product data lived in two places: prices in the QuickBooks price list, categories and images in the old platform's export. Some products existed in only one of them.</li>
-          <li>Pricing was complex: three customer tiers with different discounts, plus 93 products where the top tier pays a different rate.</li>
-          <li>Orders had to reach a QuickBooks Desktop install on a local PC, not a cloud system.</li>
-        </ul>
-
-        <h4>What I did</h4>
-        <ol>
-          <li>Wrote a Python data merge that joined both sources on SKU, calculated every price tier, flagged the exception products, and produced review reports for missing prices and categories. The owner signed off on the data before anything was imported.</li>
-          <li>Imported the full catalog with categories and images, and configured B2B tiered pricing with override rules for every exception. Prices are hidden from guests.</li>
-          <li>Migrated the site to production hosting after the standard migration tool failed on size, compressing it by 65% with a different approach.</li>
-          <li>Set up two-way QuickBooks Desktop sync. Orders, customers, and payments flow into QuickBooks as sales orders for staff review. Inventory flows back to the store hourly.</li>
-          <li>Debugged the integration end to end: an outdated TLS certificate issue on the office PC, orders stuck in a status the sync ignored, and a sales tax code error that blocked orders from posting.</li>
-        </ol>
-
-        <h4>Outcome</h4>
-        <ul>
-          <li>2,455 of 2,478 products matched automatically between the store and QuickBooks (99%+). The remaining 23 were discontinued or placeholder items.</li>
-          <li>All 93 pricing exceptions configured as specified.</li>
-          <li>Staff review every web order in QuickBooks instead of re-keying it.</li>
-        </ul>
-      </article>
-
-      <article class="case" aria-labelledby="case-b">
-        <p class="case-label">Case study B</p>
-        <h3 id="case-b">The order that disappeared without a trace</h3>
-        <p class="result"><strong>Result:</strong> Proved a real, paid customer order had been completely erased from a store's database, something the store's own records could not show.</p>
-
-        <h4>The client</h4>
-        <p>A hot tub retailer selling parts online through WooCommerce, with accounting in QuickBooks Online.</p>
-
-        <h4>The problem</h4>
-        <p>The owner noticed orders vanishing from the store while still showing up elsewhere. Separately, website sales had stopped reaching QuickBooks at all. Nobody could say what was missing or why.</p>
-
-        <h4>What I did</h4>
-        <ol>
-          <li>Mapped exactly where the store keeps its orders. Then wrote forensic database queries to profile every order status, list trashed orders, and sweep the whole store for paid orders that were no longer live.</li>
-          <li>Found that most disappearing orders were card-testing fraud: bots placing tiny charges with throwaway emails, then being cleared in daily batches. Of 15 removed orders, 14 never took payment. I flagged the one that did so it could be refunded.</li>
-          <li>Built a risk flag that marks any removed order as paid if it had payment evidence before it was deleted.</li>
-          <li>Then the owner produced a supplier invoice for a real customer order that should have existed on the site. I searched every angle: customer name, address, phone, postal code, part number, user accounts. Nothing. The order, its details, and its line items were gone entirely.</li>
-          <li>Documented everything in a handoff report and set up a new QuickBooks sync that only posts paid orders, so fraud never reaches the books.</li>
-        </ol>
-
-        <h4>Outcome</h4>
-        <ul>
-          <li>15 removed orders analyzed and classified. Fraud separated from real sales.</li>
-          <li>One genuine paid order proven lost, exposing a blind spot that a database check alone can't catch.</li>
-          <li>Fraud kept out of accounting going forward.</li>
-        </ul>
-
-        <div class="lesson">
-          <p><strong>The lesson for any store owner:</strong> if the order is deleted completely, your store won't tell you it's missing. The only way to catch it is to compare the store against outside records (payment processor, accounting, suppliers) on a schedule. That comparison is exactly what the monthly plan does.</p>
-        </div>
-      </article>
+      <div class="lesson reveal">
+        <strong>The lesson for any store owner</strong>
+        <p>If an order is deleted completely, your store won't tell you it's missing. Only a regular comparison against outside records catches it: your payment processor, accounting, and suppliers. That comparison is exactly what the monthly plan does.</p>
+      </div>
     </div>
   </section>
 
   <!-- 5. Pricing -->
   <section aria-labelledby="pricing-title">
     <div class="wrap">
-      <div class="section-head narrow">
+      <div class="section-head reveal">
         <p class="eyebrow">Pricing</p>
         <h2 id="pricing-title">One package. Clear prices.</h2>
-        <p class="lead">All prices in Canadian dollars.</p>
       </div>
-      <div class="table-wrap">
-        <table>
-          <caption>What's included</caption>
-          <thead>
-            <tr>
-              <th scope="col">Stage</th>
-              <th scope="col">What you get</th>
-              <th scope="col">Price (CAD)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Free audit</th>
-              <td>30 to 60 minute review of orders, trash, sync health, fraud signs, and checkout protection. Written findings, yours to keep.</td>
-              <td class="price">Free</td>
-            </tr>
-            <tr>
-              <th scope="row">Setup</th>
-              <td>Fix what the audit found, install monitoring, baseline reconciliation of the last 90 days.</td>
-              <td class="price">$500 one time <small>Waived for founding clients</small></td>
-            </tr>
-            <tr>
-              <th scope="row">Monthly plan</th>
-              <td>Daily order and sync monitoring, alerts on missing or stuck orders, card-testing detection, monthly reconciliation report (store vs. QuickBooks vs. payment processor), plugin updates and backups, up to 2 hours of fixes.</td>
-              <td class="price">$350/month</td>
-            </tr>
-            <tr>
-              <th scope="row">Founding rate</th>
-              <td>Same monthly plan for the first 3 clients, locked for 6 months, in exchange for a testimonial and case study rights.</td>
-              <td class="price">$200/month</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="plans">
+        <article class="card plan reveal">
+          <p class="plan-name">Free audit</p>
+          <p class="plan-price">Free</p>
+          <p class="plan-sub">30 to 60 minutes</p>
+          <ul class="checks">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Orders and trash</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Sync health</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Fraud signs and checkout protection</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Written findings, yours to keep</li>
+          </ul>
+        </article>
+
+        <article class="card plan reveal" style="--d:0.1s">
+          <p class="plan-name">Setup</p>
+          <p class="plan-price">$500 <small>one time</small></p>
+          <p class="plan-sub">Waived for founding clients</p>
+          <ul class="checks">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Fix what the audit found</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Install monitoring</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Reconcile the last 90 days</li>
+          </ul>
+        </article>
+
+        <article class="card plan featured reveal" style="--d:0.2s">
+          <span class="badge">Ongoing</span>
+          <p class="plan-name">Monthly plan</p>
+          <p class="plan-price">$350 <small>/month</small></p>
+          <p class="plan-sub">Cancel anytime with 30 days notice</p>
+          <ul class="checks">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Daily order and sync monitoring</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Alerts on missing or stuck orders</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Card-testing detection</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Monthly report: store vs. QuickBooks vs. payment processor</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Plugin updates and backups</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Up to 2 hours of fixes</li>
+          </ul>
+          <p class="founding"><strong>Founding rate: $200/month.</strong> For the first 3 clients, locked for 6 months, in exchange for a testimonial and case study rights.</p>
+        </article>
       </div>
-      <p class="price-notes">Cancel anytime with 30 days notice.</p>
+      <p class="price-notes">All prices in Canadian dollars.</p>
     </div>
   </section>
 
   <!-- 6. About -->
   <section class="tint" aria-labelledby="about-title">
-    <div class="wrap">
-      <div class="about">
+    <div class="wrap about">
+      <div class="photo-frame reveal">
         <img class="headshot" src="headshot.jpg" alt="Portrait of Jacob Ilagan" width="480" height="480" loading="lazy" decoding="async">
-        <div class="narrow">
-          <p class="eyebrow">About</p>
-          <h2 id="about-title">Hi, I'm Jacob.</h2>
-          <p>I'm a full-stack developer who works on payments and commerce systems. My focus is the part between your store and your books.</p>
-          <p>By day I'm a full-time developer on a commerce platform with 192,000 users. I work on payments, idempotent checkout, and PCI scope reduction, backed by 600+ automated tests. I bring the same care to stores your size.</p>
-          <ul class="creds">
-            <li>Built a 2,400+ product B2B store with three dealer pricing tiers and QuickBooks Desktop sync. 99% of products matched automatically.</li>
-            <li>Investigated disappearing orders for a retailer and proved a real paid order had been erased from the database without a trace.</li>
-          </ul>
-        </div>
+      </div>
+      <div class="reveal" style="--d:0.1s">
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">Hi, I'm Jacob.</h2>
+        <p>I'm a Toronto-based full-stack developer focused on payments and commerce systems. I work on the part between your store and your books.</p>
+        <p>Full time, I build for a commerce platform with 192,000 users: payments, idempotent checkout, and 600+ automated tests. I bring that same rigor to stores your size.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Questions</p>
+        <h2 id="faq-title">Before you book</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Do you need my password?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>No. For the audit, you create a separate admin account for me. You can delete it the moment we're done. I never ask for your own login.</p>
+        </details>
+        <details>
+          <summary>Will the audit change anything on my store?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>No. The audit is review only. Nothing gets fixed or changed until you say so.</p>
+        </details>
+        <details>
+          <summary>Do you work with QuickBooks Desktop?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>Yes. I work with QuickBooks Online and QuickBooks Desktop, including Desktop running on a PC in your office.</p>
+        </details>
+        <details>
+          <summary>I already have a developer. Is this still useful?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>Yes. The audit report is yours, so you can hand it to them. The monthly plan covers checking most developers don't do: comparing your store against QuickBooks and your payment processor, every month.</p>
+        </details>
+        <details>
+          <summary>What if you find nothing?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>Then you've lost nothing. You'll know your orders and your books line up, and you keep the written report.</p>
+        </details>
+        <details>
+          <summary>Can I cancel the monthly plan?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+          <p>Yes. Cancel anytime with 30 days notice.</p>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- 7. Final CTA -->
-  <section class="final" aria-labelledby="cta-title">
+  <section aria-labelledby="cta-title">
     <div class="wrap">
-      <div class="narrow">
-        <h2 id="cta-title">Book a free order integrity audit.</h2>
-        <p class="lead">If I find nothing, you've lost nothing. If I find something, you'll know exactly what it is and how to fix it, whether or not you hire me.</p>
-        <a class="btn" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">Book a free order audit</a>
+      <div class="cta-panel reveal">
+        <h2 id="cta-title">Find out what your store isn't telling you.</h2>
+        <p>If I find nothing, you've lost nothing. If I find something, you'll know exactly what it is and how to fix it, whether or not you hire me.</p>
+        <a class="btn btn-light" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">
+          Book a free order audit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="cta-alt"><span class="email-line">Or email <a href="mailto:jacob@jacobilagan.com">jacob@jacobilagan.com</a> <button class="copy-btn" type="button" data-copy="jacob@jacobilagan.com" hidden>Copy</button></span></p>
       </div>
     </div>
   </section>
@@ -423,5 +734,70 @@
     <p><a href="mailto:jacob@jacobilagan.com">jacob@jacobilagan.com</a></p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var header = document.querySelector('.site-header');
+  var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Copy-email buttons, shown only where the clipboard API works
+  if (navigator.clipboard) {
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      btn.hidden = false;
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+        });
+      });
+    });
+  }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+
+  var countUp = function (el) {
+    var target = +el.dataset.count, suffix = el.dataset.suffix || '', comma = el.dataset.format === 'comma';
+    var start = null, dur = 1400;
+    var fmt = function (n) { return (comma ? n.toLocaleString('en-CA') : n) + suffix; };
+    var tick = function (t) {
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = fmt(0);
+    requestAnimationFrame(tick);
+  };
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      var n = e.target.querySelector('[data-count]');
+      if (n) countUp(n);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(function (el) { io.observe(el); });
+
+  // Fill the step connector as the section scrolls into view
+  var steps = document.getElementById('steps');
+  var fill = function () {
+    var r = steps.getBoundingClientRect(), vh = window.innerHeight;
+    var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.5)));
+    steps.style.setProperty('--progress', (p * 100).toFixed(1) + '%');
+  };
+  window.addEventListener('scroll', fill, { passive: true });
+  fill();
+})();
+</script>
 </body>
 </html>
