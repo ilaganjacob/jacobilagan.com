@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Integrity for WooCommerce and QuickBooks | Jacob Ilagan</title>
+<meta name="description" content="I monitor your WooCommerce store and its QuickBooks sync so missing orders, fraud, and sync failures get caught in hours, not months later. Start with a free order audit.">
+<link rel="canonical" href="https://jacobilagan.com/">
+<meta name="theme-color" content="#1d4f4a">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jacobilagan.com/">
+<meta property="og:site_name" content="Jacob Ilagan">
+<meta property="og:title" content="Every order on your store, in your books. Nothing lost, nothing faked.">
+<meta property="og:description" content="WooCommerce and QuickBooks order monitoring for growing stores. Missing orders, sync failures, and card-testing fraud caught in hours. Start with a free order audit.">
+<meta property="og:image" content="https://jacobilagan.com/headshot.jpg">
+<meta property="og:image:alt" content="Portrait of Jacob Ilagan">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Every order on your store, in your books. Nothing lost, nothing faked.">
+<meta name="twitter:description" content="WooCommerce and QuickBooks order monitoring for growing stores. Start with a free order audit.">
+<meta name="twitter:image" content="https://jacobilagan.com/headshot.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d4f4a'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<style>
+  :root {
+    --ink: #1c2321;
+    --muted: #4d5754;
+    --line: #dfe3e1;
+    --paper: #ffffff;
+    --tint: #f5f7f6;
+    --accent: #1d4f4a;
+    --accent-dark: #143a36;
+    --accent-soft: #e7efed;
+    --radius: 6px;
+    --wrap: 68rem;
+    --narrow: 44rem;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+
+  a { color: var(--accent); text-underline-offset: 0.18em; }
+  a:hover { color: var(--accent-dark); }
+
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .skip {
+    position: absolute; left: 1rem; top: -4rem;
+    background: var(--accent); color: #fff; padding: 0.6rem 1rem; border-radius: var(--radius);
+    text-decoration: none; z-index: 10;
+  }
+  .skip:focus { top: 1rem; color: #fff; }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 1.25rem; }
+  .narrow { max-width: var(--narrow); }
+
+  h1, h2, h3 { line-height: 1.25; color: var(--ink); margin: 0 0 0.75rem; font-weight: 650; }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); letter-spacing: -0.01em; }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0 0 1rem; }
+
+  .eyebrow {
+    font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 0.75rem;
+  }
+  .lead { font-size: 1.1875rem; color: var(--muted); }
+
+  section { padding: 5rem 0; }
+  section.tint { background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { margin-bottom: 2.5rem; }
+
+  /* Header */
+  .site-header { border-bottom: 1px solid var(--line); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1rem; padding-bottom: 1rem; }
+  .brand { font-weight: 650; color: var(--ink); text-decoration: none; }
+  .site-header nav a { font-size: 0.9375rem; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+    font-weight: 600; padding: 0.9rem 1.5rem; border-radius: var(--radius);
+    border: 2px solid var(--accent); transition: background-color 0.15s ease;
+  }
+  .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+  .note { font-size: 0.9375rem; color: var(--muted); margin-top: 1rem; }
+
+  /* Hero */
+  .hero { padding: 6rem 0 5rem; }
+  .hero h1 { max-width: 20ch; }
+  .hero .lead { max-width: 40rem; margin-bottom: 2rem; }
+
+  /* Grids */
+  .grid-3 { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Steps */
+  .steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+  .steps li { counter-increment: step; }
+  .steps .card h3::before {
+    content: counter(step);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem; margin-right: 0.75rem; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent); font-size: 0.9375rem; font-weight: 700;
+  }
+  .step-meta { font-size: 0.9375rem; color: var(--muted); margin-top: 0.5rem; }
+
+  /* Case studies */
+  .case { border-top: 1px solid var(--line); padding-top: 3rem; margin-top: 3rem; }
+  .case:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  .case-label { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.25rem; }
+  .result {
+    background: var(--accent-soft); border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0; margin: 1.25rem 0 2rem;
+  }
+  .result strong { color: var(--accent-dark); }
+  .case h4 { font-size: 1rem; margin: 1.75rem 0 0.5rem; }
+  .case ul, .case ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+  .case li { margin-bottom: 0.5rem; }
+  .lesson { border: 1px solid var(--line); background: var(--paper); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.75rem; }
+  .lesson p:last-child { margin-bottom: 0; }
+
+  /* Pricing */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+  table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+  caption { text-align: left; padding: 1rem 1.25rem; font-weight: 600; border-bottom: 1px solid var(--line); }
+  th, td { text-align: left; vertical-align: top; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--line); }
+  thead th { font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--tint); }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  tbody th { font-weight: 650; white-space: nowrap; }
+  td.price { white-space: nowrap; font-weight: 600; }
+  td.price small { display: block; font-weight: 400; color: var(--muted); white-space: normal; max-width: 12rem; }
+  .price-notes { margin-top: 1rem; color: var(--muted); font-size: 0.9375rem; }
+
+  @media (max-width: 40rem) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    tbody tr { border-bottom: 1px solid var(--line); padding: 1rem 1.25rem; }
+    tbody tr:last-child { border-bottom: 0; }
+    tbody th, td { border: 0; padding: 0.2rem 0; white-space: normal; }
+    tbody th { font-size: 1.0625rem; }
+    td.price { margin-top: 0.5rem; }
+  }
+
+  /* About */
+  .about { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 48rem) { .about { grid-template-columns: 15rem 1fr; gap: 3.5rem; } }
+  .headshot { width: 15rem; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); background: var(--accent-soft); }
+  .creds { padding-left: 1.25rem; margin: 1.25rem 0 0; }
+  .creds li { margin-bottom: 0.5rem; }
+
+  /* Final CTA */
+  .final { text-align: center; }
+  .final .narrow { margin: 0 auto; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 2rem 0; font-size: 0.9375rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+  footer p { margin: 0; }
+
+  @media (max-width: 40rem) {
+    section { padding: 3.5rem 0; }
+    .hero { padding: 3.5rem 0 3rem; }
+    .site-header nav { display: none; }
+    .btn { display: block; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Jacob Ilagan</a>
+    <nav aria-label="Primary">
+      <a href="mailto:jacob@jacobilagan.com?subject=Order%20audit">jacob@jacobilagan.com</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="eyebrow">WooCommerce + QuickBooks order integrity</p>
+      <h1 id="hero-title">Every order on your store, in your books. Nothing lost, nothing faked.</h1>
+      <p class="lead">I monitor your WooCommerce store and its QuickBooks sync so missing orders, fraud, and sync failures get caught in hours, not discovered months later by your accountant.</p>
+      <a class="btn" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">Book a free order audit</a>
+      <p class="note">For stores doing roughly $20k to $300k a month, with no in-house developer.</p>
+    </div>
+  </section>
+
+  <!-- 2. The problem -->
+  <section class="tint" aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="section-head narrow">
+        <p class="eyebrow">The problem</p>
+        <h2 id="problem-title">Your store will not tell you what it lost.</h2>
+        <p class="lead">Most order problems are silent. You find out at month end, or when your accountant asks why the numbers don't match.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Missing orders</h3>
+          <p>An order can be deleted completely. When that happens, your store has no record of it. The only way to catch it is to compare the store against outside records.</p>
+        </article>
+        <article class="card">
+          <h3>QuickBooks sync failures</h3>
+          <p>A sync can stop without warning. Orders get stuck in a status the sync ignores, or a tax setting blocks them from posting. Sales stop reaching your books.</p>
+        </article>
+        <article class="card">
+          <h3>Card-testing fraud</h3>
+          <p>Bots place waves of tiny charges with throwaway emails. They clutter your orders, cost you fees, and can end up in your accounting as fake sales.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. How it works -->
+  <section aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head narrow">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">Three steps. You can stop after the first.</h2>
+      </div>
+      <ol class="steps grid-3">
+        <li class="card">
+          <h3>Free audit</h3>
+          <p>A 30 to 60 minute review of your orders, trash, sync health, fraud signs, and checkout protection. You get written findings, yours to keep.</p>
+          <p class="step-meta">Free</p>
+        </li>
+        <li class="card">
+          <h3>Setup</h3>
+          <p>I fix what the audit found, install monitoring, and reconcile the last 90 days to set a clean baseline.</p>
+          <p class="step-meta">One time</p>
+        </li>
+        <li class="card">
+          <h3>Monthly plan</h3>
+          <p>Daily order and sync monitoring. Alerts on missing or stuck orders. Card-testing detection. A monthly report comparing your store, QuickBooks, and payment processor.</p>
+          <p class="step-meta">Monthly, cancel anytime</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. Case studies -->
+  <section class="tint" aria-labelledby="cases-title">
+    <div class="wrap narrow">
+      <div class="section-head">
+        <p class="eyebrow">Case studies</p>
+        <h2 id="cases-title">Recent work</h2>
+        <p class="lead">Client details are kept anonymous.</p>
+      </div>
+
+      <article class="case" aria-labelledby="case-a">
+        <p class="case-label">Case study A</p>
+        <h3 id="case-a">Wholesale distributor moves to WooCommerce with QuickBooks Desktop sync</h3>
+        <p class="result"><strong>Result:</strong> 2,400+ products live with three dealer pricing tiers, and 99% of products matched to QuickBooks automatically.</p>
+
+        <h4>The client</h4>
+        <p>A B2B wholesale distributor of hot tub and pool parts, selling to dealers, technicians, and contractors. Leaving a legacy e-commerce platform, with accounting in QuickBooks Desktop running on a local office machine.</p>
+
+        <h4>The problem</h4>
+        <ul>
+          <li>Product data lived in two places: prices in the QuickBooks price list, categories and images in the old platform's export. Some products existed in only one of them.</li>
+          <li>Pricing was complex: three customer tiers with different discounts, plus 93 products where the top tier pays a different rate.</li>
+          <li>Orders had to reach a QuickBooks Desktop install on a local PC, not a cloud system.</li>
+        </ul>
+
+        <h4>What I did</h4>
+        <ol>
+          <li>Wrote a Python data merge that joined both sources on SKU, calculated every price tier, flagged the exception products, and produced review reports for missing prices and categories. The owner signed off on the data before anything was imported.</li>
+          <li>Imported the full catalog with categories and images, and configured B2B tiered pricing with override rules for every exception. Prices are hidden from guests.</li>
+          <li>Migrated the site to production hosting after the standard migration tool failed on size, compressing it by 65% with a different approach.</li>
+          <li>Set up two-way QuickBooks Desktop sync. Orders, customers, and payments flow into QuickBooks as sales orders for staff review. Inventory flows back to the store hourly.</li>
+          <li>Debugged the integration end to end: an outdated TLS certificate issue on the office PC, orders stuck in a status the sync ignored, and a sales tax code error that blocked orders from posting.</li>
+        </ol>
+
+        <h4>Outcome</h4>
+        <ul>
+          <li>2,455 of 2,478 products matched automatically between the store and QuickBooks (99%+). The remaining 23 were discontinued or placeholder items.</li>
+          <li>All 93 pricing exceptions configured as specified.</li>
+          <li>Staff review every web order in QuickBooks instead of re-keying it.</li>
+        </ul>
+      </article>
+
+      <article class="case" aria-labelledby="case-b">
+        <p class="case-label">Case study B</p>
+        <h3 id="case-b">The order that disappeared without a trace</h3>
+        <p class="result"><strong>Result:</strong> Proved a real, paid customer order had been completely erased from a store's database, something the store's own records could not show.</p>
+
+        <h4>The client</h4>
+        <p>A hot tub retailer selling parts online through WooCommerce, with accounting in QuickBooks Online.</p>
+
+        <h4>The problem</h4>
+        <p>The owner noticed orders vanishing from the store while still showing up elsewhere. Separately, website sales had stopped reaching QuickBooks at all. Nobody could say what was missing or why.</p>
+
+        <h4>What I did</h4>
+        <ol>
+          <li>Mapped exactly where the store keeps its orders. Then wrote forensic database queries to profile every order status, list trashed orders, and sweep the whole store for paid orders that were no longer live.</li>
+          <li>Found that most disappearing orders were card-testing fraud: bots placing tiny charges with throwaway emails, then being cleared in daily batches. Of 15 removed orders, 14 never took payment. I flagged the one that did so it could be refunded.</li>
+          <li>Built a risk flag that marks any removed order as paid if it had payment evidence before it was deleted.</li>
+          <li>Then the owner produced a supplier invoice for a real customer order that should have existed on the site. I searched every angle: customer name, address, phone, postal code, part number, user accounts. Nothing. The order, its details, and its line items were gone entirely.</li>
+          <li>Documented everything in a handoff report and set up a new QuickBooks sync that only posts paid orders, so fraud never reaches the books.</li>
+        </ol>
+
+        <h4>Outcome</h4>
+        <ul>
+          <li>15 removed orders analyzed and classified. Fraud separated from real sales.</li>
+          <li>One genuine paid order proven lost, exposing a blind spot that a database check alone can't catch.</li>
+          <li>Fraud kept out of accounting going forward.</li>
+        </ul>
+
+        <div class="lesson">
+          <p><strong>The lesson for any store owner:</strong> if the order is deleted completely, your store won't tell you it's missing. The only way to catch it is to compare the store against outside records (payment processor, accounting, suppliers) on a schedule. That comparison is exactly what the monthly plan does.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5. Pricing -->
+  <section aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="section-head narrow">
+        <p class="eyebrow">Pricing</p>
+        <h2 id="pricing-title">One package. Clear prices.</h2>
+        <p class="lead">All prices in Canadian dollars.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>What's included</caption>
+          <thead>
+            <tr>
+              <th scope="col">Stage</th>
+              <th scope="col">What you get</th>
+              <th scope="col">Price (CAD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Free audit</th>
+              <td>30 to 60 minute review of orders, trash, sync health, fraud signs, and checkout protection. Written findings, yours to keep.</td>
+              <td class="price">Free</td>
+            </tr>
+            <tr>
+              <th scope="row">Setup</th>
+              <td>Fix what the audit found, install monitoring, baseline reconciliation of the last 90 days.</td>
+              <td class="price">$500 one time <small>Waived for founding clients</small></td>
+            </tr>
+            <tr>
+              <th scope="row">Monthly plan</th>
+              <td>Daily order and sync monitoring, alerts on missing or stuck orders, card-testing detection, monthly reconciliation report (store vs. QuickBooks vs. payment processor), plugin updates and backups, up to 2 hours of fixes.</td>
+              <td class="price">$350/month</td>
+            </tr>
+            <tr>
+              <th scope="row">Founding rate</th>
+              <td>Same monthly plan for the first 3 clients, locked for 6 months, in exchange for a testimonial and case study rights.</td>
+              <td class="price">$200/month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="price-notes">Cancel anytime with 30 days notice.</p>
+    </div>
+  </section>
+
+  <!-- 6. About -->
+  <section class="tint" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about">
+        <img class="headshot" src="headshot.jpg" alt="Portrait of Jacob Ilagan" width="480" height="480" loading="lazy" decoding="async">
+        <div class="narrow">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">Hi, I'm Jacob.</h2>
+          <p>I'm a full-stack developer who works on payments and commerce systems. My focus is the part between your store and your books.</p>
+          <p>By day I'm a full-time developer on a commerce platform with 192,000 users. I work on payments, idempotent checkout, and PCI scope reduction, backed by 600+ automated tests. I bring the same care to stores your size.</p>
+          <ul class="creds">
+            <li>Built a 2,400+ product B2B store with three dealer pricing tiers and QuickBooks Desktop sync. 99% of products matched automatically.</li>
+            <li>Investigated disappearing orders for a retailer and proved a real paid order had been erased from the database without a trace.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Final CTA -->
+  <section class="final" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="narrow">
+        <h2 id="cta-title">Book a free order integrity audit.</h2>
+        <p class="lead">If I find nothing, you've lost nothing. If I find something, you'll know exactly what it is and how to fix it, whether or not you hire me.</p>
+        <a class="btn" href="mailto:jacob@jacobilagan.com?subject=Order%20audit">Book a free order audit</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Jacob Ilagan</p>
+    <p><a href="mailto:jacob@jacobilagan.com">jacob@jacobilagan.com</a></p>
+  </div>
+</footer>
+</body>
+</html>
