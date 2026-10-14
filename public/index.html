@@ -321,6 +321,7 @@
   .plan .name { font-size: .875rem; font-weight: 500; color: var(--muted); }
   .plan .price { margin-top: 1.25rem; font-size: 2.75rem; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
   .plan .price small { font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+  .plan .price .was { font-size: 1.25rem; font-weight: 500; letter-spacing: 0; color: var(--faint); margin-left: .35rem; text-decoration-thickness: 2px; }
   .plan .note { margin-top: .5rem; font-size: .875rem; color: var(--muted); }
   .plan ul { list-style: none; margin: 1.5rem 0 0; padding: 1.5rem 0 0; border-top: 1px solid var(--line); display: grid; gap: .65rem; }
   .plan li { display: grid; grid-template-columns: 1.1rem 1fr; gap: .6rem; font-size: .9375rem; }
@@ -515,8 +516,8 @@
         </div>
         <ol class="steps reveal" id="steps" style="--d:.1s">
           <li class="step"><span class="n">1</span><h3>Free audit</h3><p>I review your orders, sync, and fraud signs. You keep the written findings.</p><div class="price">Free</div></li>
-          <li class="step"><span class="n">2</span><h3>Setup</h3><p>I fix what I found, install monitoring, and reconcile the last 90 days.</p><div class="price">$500 one time</div></li>
-          <li class="step"><span class="n">3</span><h3>Monthly plan</h3><p>I watch every day and send you a reconciliation report each month.</p><div class="price">$350/month</div></li>
+          <li class="step"><span class="n">2</span><h3>Setup</h3><p>I fix what I found, install monitoring, and reconcile the last 90 days.</p><div class="price">Free for founding clients</div></li>
+          <li class="step"><span class="n">3</span><h3>Monthly plan</h3><p>I watch every day and send you a reconciliation report each month.</p><div class="price">$200/month for founding clients</div></li>
         </ol>
       </div>
       <div class="split-row">
@@ -653,8 +654,8 @@
         </article>
         <article class="plan reveal" style="--d:.08s">
           <p class="name">Setup</p>
-          <p class="price">$500 <small>one time</small></p>
-          <p class="note">Waived for founding clients</p>
+          <p class="price">$0 <s class="was">$500</s></p>
+          <p class="note">Free for the first 3 clients. $500 one time after that.</p>
           <ul>
             <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Fix what the audit found</li>
             <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Install monitoring</li>
@@ -664,7 +665,7 @@
         <article class="plan featured reveal" style="--d:.16s">
           <span class="badge">Ongoing</span>
           <p class="name">Monthly plan</p>
-          <p class="price">$350 <small>/month</small></p>
+          <p class="price">$200 <small>/month</small> <s class="was">$350</s></p>
           <p class="note">Cancel anytime with 30 days notice</p>
           <ul>
             <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Daily order and sync monitoring</li>
@@ -674,7 +675,7 @@
             <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Plugin updates and backups</li>
             <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>Up to 2 hours of fixes</li>
           </ul>
-          <p class="founding"><b>Founding rate: $200/month.</b> For the first 3 clients, locked for 6 months, in exchange for a testimonial and case study rights.</p>
+          <p class="founding"><b>Founding rate for the first 3 clients.</b> Locked at $200/month for 6 months, in exchange for a testimonial and case study rights. $350/month after that.</p>
         </article>
       </div>
     </div>
