@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Making retries safe: one enrollment, one order | Jacob Ilagan</title>
+<meta name="description" content="Case study: two background jobs could provision the same course purchase and create duplicate orders. An atomic database claim made sure only one job ever acts on a record.">
+<link rel="canonical" href="https://jacobilagan.com/work/safe-retries/">
+<meta name="theme-color" content="#EEF0F3">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jacobilagan.com/work/safe-retries/">
+<meta property="og:site_name" content="Jacob Ilagan">
+<meta property="og:title" content="Making retries safe: one enrollment, one order">
+<meta property="og:description" content="Preventing duplicate orders when background jobs overlap.">
+<meta property="og:image" content="https://jacobilagan.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E2F5C'/%3E%3Cpath d='M19 8v11.5a4.5 4.5 0 0 1-9 0' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="/">Jacob Ilagan</a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work" aria-current="page">Work</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#about">About</a>
+      <a href="/jacob-ilagan-resume.pdf">Résumé</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="cs-header">
+      <a class="back" href="/#work"><span aria-hidden="true">←</span> All work</a>
+      <p class="mono small muted">02 / Admin and operations API</p>
+      <h1 class="serif display">One enrollment, one order, no matter how many jobs run</h1>
+      <p class="body-lg soft cs-lede">Two background jobs could provision the same course purchase at the same time and create duplicate orders on the learning platform. I made each job claim its record in a single database statement, so only one can ever act on it.</p>
+    </header>
+
+    <dl class="tldr">
+      <div><dt class="label muted">Problem</dt><dd class="small">A check and a write ran as separate steps, so overlapping retries could both pass the check and both create an order.</dd></div>
+      <div><dt class="label muted">Fix</dt><dd class="small">One conditional update claims the enrollment. If it touches zero rows, another job owns it and this one stops.</dd></div>
+      <div><dt class="label muted">Result</dt><dd class="small">Caught before release. Three integration tests prove one order per enrollment, even when jobs overlap or crash.</dd></div>
+    </dl>
+
+    <section class="cs-section" aria-labelledby="context">
+      <aside class="cs-aside" aria-label="Key numbers">
+        <div class="stat"><strong>100</strong><span class="small muted">records per bulk retry, at most</span></div>
+        <div class="stat"><strong>15 min</strong><span class="small muted">before a stuck claim can be taken over</span></div>
+        <div class="stat"><strong>3</strong><span class="small muted">integration tests for the race</span></div>
+      </aside>
+      <div class="prose">
+        <h2 id="context">Context</h2>
+        <p>The platform sells continuing education courses to veterinary teams. When someone buys a course, a background job gives them access on the external learning platform by creating an order there.</p>
+        <p>When that fails, staff can retry from the admin panel, one record at a time or up to 100 at once. A scheduled sweep also picks up anything that got stuck. I was building the admin API in a platform rebuild alongside an external agency, and the bulk retry was mine.</p>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="problem">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="problem">The problem</h2>
+        <p>Before queuing a job, the bulk retry checked that the enrollment wasn&#39;t already done or in progress. But <strong>the check and the queueing were two separate steps.</strong></p>
+        <p>If two retries overlapped, or a retry ran at the same moment as the sweep, both could pass the check. Both jobs would then call the learning platform, and the learner would end up with two orders for one purchase.</p>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="fix">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="fix">The fix</h2>
+        <p>I moved the guard into the job itself and made it atomic. Instead of reading the status and then writing it, the job claims the enrollment with one conditional update. It only succeeds if the enrollment isn&#39;t completed and isn&#39;t already held by another job.</p>
+<pre aria-label="Simplified SQL showing an atomic claim">UPDATE enrollments
+SET status = 'in_progress', updated_at = now()
+WHERE id = @id
+  AND status &lt;&gt; 'completed'
+  AND (status &lt;&gt; 'in_progress'
+       OR updated_at &lt; now() - interval '15 minutes');
+<span class="comment">-- 1 row: this job owns it. 0 rows: another job does, so stop.</span></pre>
+        <p class="small muted">A simplified version of the idea, not the production code.</p>
+        <p>If the update touches zero rows, the job logs the skip and exits without calling the learning platform. Two details mattered:</p>
+        <ul>
+          <li><strong>Crashed workers.</strong> If a job dies after claiming a record, the claim would otherwise last forever. A claim older than 15 minutes can be taken over, which matches the window the sweep already uses.</li>
+          <li><strong>The ORM&#39;s own concurrency check.</strong> A bulk update skips Entity Framework&#39;s change tracking, so the job&#39;s in memory copy would look out of date and its next save would fail with a false conflict. Reloading the record right after the claim prevents that.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="proof">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="proof">How I proved it</h2>
+        <p>I changed the test stand in for the learning platform so it records every order it receives, then wrote three integration tests:</p>
+        <ol class="tests">
+          <li><span class="mono small muted">1</span><span>A job does nothing while another job holds a fresh claim.</span></li>
+          <li><span class="mono small muted">2</span><span>A claim left behind by a crashed worker is taken over, and exactly one order is created.</span></li>
+          <li><span class="mono small muted">3</span><span>A failed enrollment queued twice still produces exactly one order.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="outcome">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="outcome">Outcome</h2>
+        <ul>
+          <li>Duplicate orders from overlapping retries can no longer happen, and it was caught before release.</li>
+          <li>In a bulk retry, records that are missing, already done or in progress are skipped with a reason instead of failing the whole batch.</li>
+        </ul>
+        <h3>Another one caught before release</h3>
+        <p>A nightly cleanup job for unverified accounts could have deleted members who had already paid. It now skips anyone with orders, enrollments or carts, and removes each account locally before tearing down its login, so one blocked delete can&#39;t break the whole run.</p>
+        <p class="lesson">Any check that runs separately from the write it protects will eventually lose a race. The safe place for that rule is the write itself.</p>
+      </div>
+    </section>
+
+    <a class="next" href="/work/vetmedplus/">
+      <span class="label muted">Next case study</span>
+      <span class="serif h3">A weekly newsletter, built for each reader →</span>
+    </a>
+  </main>
+
+  <footer class="site-footer">
+    <p class="small muted">© 2026 Jacob Ilagan</p>
+    <nav class="nav" aria-label="Footer">
+      <a href="https://github.com/ilaganjacob">GitHub</a>
+      <a href="https://www.linkedin.com/in/jacob-ilagan/">LinkedIn</a>
+      <a href="/order-integrity/">Order Integrity for WooCommerce stores</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

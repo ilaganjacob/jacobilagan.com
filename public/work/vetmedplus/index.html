@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VetMedPlus+, a weekly newsletter built for each reader | Jacob Ilagan</title>
+<meta name="description" content="Case study: an automated, AI curated newsletter for veterinary professionals. Three n8n workflows, one Supabase database and a Next.js subscriber site, built by one developer.">
+<link rel="canonical" href="https://jacobilagan.com/work/vetmedplus/">
+<meta name="theme-color" content="#EEF0F3">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jacobilagan.com/work/vetmedplus/">
+<meta property="og:site_name" content="Jacob Ilagan">
+<meta property="og:title" content="VetMedPlus+, a weekly newsletter built for each reader">
+<meta property="og:description" content="Three production workflows, one database, one developer.">
+<meta property="og:image" content="https://jacobilagan.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E2F5C'/%3E%3Cpath d='M19 8v11.5a4.5 4.5 0 0 1-9 0' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="wrap">
+  <header class="site-header">
+    <a class="brand" href="/">Jacob Ilagan</a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work" aria-current="page">Work</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#about">About</a>
+      <a href="/jacob-ilagan-resume.pdf">Résumé</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="cs-header">
+      <a class="back" href="/#work"><span aria-hidden="true">←</span> All work</a>
+      <p class="mono small muted">01 / VetMedPlus+</p>
+      <h1 class="serif display">A weekly newsletter, built for each reader</h1>
+      <p class="body-lg soft cs-lede">VetMedPlus+ is an automated, AI curated newsletter for veterinary professionals. It&#39;s part of a premium membership tier on VetMedTeam, a continuing education platform with about 192,000 registered users. I designed and built all of it on my own, from the database to the subscriber site.</p>
+    </header>
+
+    <dl class="tldr">
+      <div><dt class="label muted">Problem</dt><dd class="small">Vets don&#39;t have time to follow dozens of research and industry sources, and one digest for everyone wastes the time they do have.</dd></div>
+      <div><dt class="label muted">What I built</dt><dd class="small">Three production n8n workflows around one Supabase database, plus a Next.js site where members manage preferences with their VetMedTeam login.</dd></div>
+      <div><dt class="label muted">Result</dt><dd class="small">Every subscriber gets their own weekly email, ranked from about 200 scored articles, with a compliance record for every source. Launching soon.</dd></div>
+    </dl>
+
+    <figure class="cs-figure boxed">
+      <img src="/images/vetmedplus-email.webp" srcset="/images/vetmedplus-email-640.webp 640w, /images/vetmedplus-email.webp 1192w" sizes="(max-width: 720px) 100vw, 640px" width="1192" height="1332" decoding="async" alt="A VetMedPlus+ issue: the header with the date and article count, the weekly briefing, and one research summary with its takeaway and source.">
+    </figure>
+
+    <section class="cs-section" aria-labelledby="context">
+      <aside class="cs-aside" aria-label="Key numbers">
+        <div class="stat"><strong>20+</strong><span class="small muted">sources read every day</span></div>
+        <div class="stat"><strong>~200</strong><span class="small muted">articles scored each week</span></div>
+        <div class="stat"><strong>1</strong><span class="small muted">developer, end to end</span></div>
+      </aside>
+      <div class="prose">
+        <h2 id="context">Context</h2>
+        <p>VetMedTeam sells continuing education to veterinary teams. VetMedPlus+ is part of its premium membership, and its job is simple to say and hard to do well: read the field every day, and send each member only what matters to them.</p>
+        <p>I was the only developer. That meant the architecture, the database design, every workflow, the subscriber site, and now the move to self hosting.</p>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="how">
+      <aside class="cs-aside">
+        <p class="label muted">Batch, not real time</p>
+        <p class="small muted">Articles come in daily. Email goes out weekly.</p>
+      </aside>
+      <div class="prose">
+        <h2 id="how">How it works</h2>
+        <p>Three workflows share one database. Each one does a single job, so a failure in one never quietly breaks another.</p>
+      </div>
+    </section>
+
+    <figure class="cs-figure">
+      <div class="diagram">
+        <svg viewBox="0 0 1000 280" role="img" aria-labelledby="dg-title">
+          <title id="dg-title">Pipeline: RSS sources feed daily ingestion, which writes to Supabase after compliance checks. Weekly assembly reads Supabase and sends one email per subscriber through SendGrid. The Next.js site reads and writes preferences in Supabase, with sign in through Auth0.</title>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#1E2F5C"/></marker>
+            <marker id="arrow-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#8A96B4"/></marker>
+          </defs>
+          <g class="node"><rect x="1" y="20" width="168" height="68" rx="6"/><text x="85" y="49" text-anchor="middle">Sources</text><text class="sub" x="85" y="70" text-anchor="middle">20+ RSS feeds</text></g>
+          <g class="node"><rect x="208" y="20" width="168" height="68" rx="6"/><text x="292" y="49" text-anchor="middle">Ingestion</text><text class="sub" x="292" y="70" text-anchor="middle">daily · scrape · tag</text></g>
+          <g class="node core"><rect x="415" y="20" width="168" height="68" rx="6"/><text x="499" y="49" text-anchor="middle">Supabase</text><text class="sub" x="499" y="70" text-anchor="middle">articles · members</text></g>
+          <g class="node"><rect x="622" y="20" width="168" height="68" rx="6"/><text x="706" y="49" text-anchor="middle">Assembly</text><text class="sub" x="706" y="70" text-anchor="middle">weekly · per reader</text></g>
+          <g class="node"><rect x="829" y="20" width="168" height="68" rx="6"/><text x="913" y="49" text-anchor="middle">SendGrid</text><text class="sub" x="913" y="70" text-anchor="middle">send · audit log</text></g>
+          <g class="node"><rect x="208" y="190" width="168" height="68" rx="6"/><text x="292" y="219" text-anchor="middle">Compliance</text><text class="sub" x="292" y="240" text-anchor="middle">robots.txt · terms</text></g>
+          <g class="node"><rect x="415" y="190" width="168" height="68" rx="6"/><text x="499" y="219" text-anchor="middle">Subscriber site</text><text class="sub" x="499" y="240" text-anchor="middle">Next.js · preferences</text></g>
+          <g class="node"><rect x="622" y="190" width="168" height="68" rx="6"/><text x="706" y="219" text-anchor="middle">Auth0</text><text class="sub" x="706" y="240" text-anchor="middle">VetMedTeam login</text></g>
+          <g class="node"><rect x="829" y="190" width="168" height="68" rx="6"/><text x="913" y="219" text-anchor="middle">Subscribers</text><text class="sub" x="913" y="240" text-anchor="middle">one email each</text></g>
+          <path class="edge" d="M170 54 H206" marker-end="url(#arrow)"/>
+          <path class="edge" d="M377 54 H413" marker-end="url(#arrow)"/>
+          <path class="edge" d="M584 54 H620" marker-end="url(#arrow)"/>
+          <path class="edge" d="M791 54 H827" marker-end="url(#arrow)"/>
+          <path class="edge" d="M913 89 V188" marker-end="url(#arrow)"/>
+          <path class="edge soft" d="M292 189 V90" marker-end="url(#arrow-soft)"/>
+          <path class="edge" d="M499 189 V90" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+          <path class="edge soft" d="M621 224 H585" marker-end="url(#arrow-soft)"/>
+          <text class="sub" x="300" y="146">checked before scraping</text>
+          <text class="sub" x="507" y="146">reads and writes</text>
+        </svg>
+        <ol class="diagram-list" aria-hidden="true">
+          <li><span class="mono small muted">1</span><span class="small">Sources: 20+ RSS feeds</span></li>
+          <li><span class="mono small muted">2</span><span class="small">Compliance checks each source before scraping</span></li>
+          <li><span class="mono small muted">3</span><span class="small">Daily ingestion scrapes and tags articles into Supabase</span></li>
+          <li><span class="mono small muted">4</span><span class="small">Weekly assembly ranks articles for each reader</span></li>
+          <li><span class="mono small muted">5</span><span class="small">SendGrid sends one email per subscriber, with an audit log</span></li>
+          <li><span class="mono small muted">6</span><span class="small">The Next.js site, behind the Auth0 VetMedTeam login, keeps each reader&#39;s preferences</span></li>
+        </ol>
+      </div>
+      <figcaption class="small muted">The three workflows (ingestion, assembly, compliance) and the subscriber site, all around one database.</figcaption>
+    </figure>
+
+    <section class="cs-section" aria-labelledby="workflows">
+      <aside class="cs-aside">
+        <p class="label muted">Stack</p>
+        <p class="small soft">n8n, Azure OpenAI, Firecrawl, Supabase, Postgres 16, SendGrid, Next.js 14, TypeScript, Auth0, Docker</p>
+      </aside>
+      <div class="prose">
+        <h2 id="workflows">The three workflows</h2>
+        <h3>Daily ingestion</h3>
+        <p>Every day it polls the RSS feeds and checks each URL against the database <strong>before doing any work</strong>, so the pipeline never pays to scrape or summarize the same article twice. New articles are scraped in full with Firecrawl. A model then summarizes, scores and tags each one, and the results land in Supabase.</p>
+        <h3>Weekly assembly</h3>
+        <p>Once a week it takes the active subscribers and scores every article against each reader&#39;s stated interests. It balances categories so one topic never takes over, and holds the email back if there isn&#39;t enough good content. Then it builds the HTML, sends through SendGrid, and writes every send to an audit log.</p>
+        <h3>Compliance</h3>
+        <p>Before any site is scraped, the pipeline checks its robots.txt. Every day it hashes each site&#39;s terms of service with SHA 256 to detect changes, archives a snapshot on the Wayback Machine, and emails a compliance log for each source.</p>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="decisions">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="decisions">Design decisions</h2>
+        <ul>
+          <li><strong>Tags the code can trust.</strong> The model returns structured output checked against a JSON Schema and a fixed vocabulary. Every tag is a known value, so matching articles to readers needs no cleanup.</li>
+          <li><strong>Personalized for real.</strong> Each subscriber gets their own ranking, not one shared email with their name on it.</li>
+          <li><strong>Guardrails before sending.</strong> A minimum content check and an audit log mean a thin or broken week never reaches inboxes silently.</li>
+          <li><strong>Compliance as its own workflow.</strong> Respecting each source&#39;s rules runs on a schedule and leaves a paper trail, instead of living in someone&#39;s memory.</li>
+          <li><strong>A real sending service.</strong> Email goes out through SendGrid rather than a regular mailbox, so volume can grow without hitting mailbox limits.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="site">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="site">The subscriber site</h2>
+        <p>Members manage their interests and browse past issues on a site I built in Next.js 14 and TypeScript. There&#39;s no second account to create: they sign in with their existing VetMedTeam login, through a custom Auth0 claim that carries their membership tier.</p>
+      </div>
+    </section>
+
+    <section class="cs-section" aria-labelledby="next-steps">
+      <aside class="cs-aside"></aside>
+      <div class="prose">
+        <h2 id="next-steps">Where it&#39;s going</h2>
+        <p>Directors and the CEO tested it as stakeholders, and I presented it at a Forum Media Group general managers&#39; meeting in Europe. Internally it&#39;s now a proof of concept for an automated editorial setup that could be reused for other publications.</p>
+        <p>I&#39;m also moving n8n from n8n Cloud to a self hosted Ubuntu 24.04 server, running n8n and Postgres 16 in Docker.</p>
+        <p class="lesson">The model is the easy part. The value is in everything around it: deduplication, schemas, guardrails and a paper trail.</p>
+      </div>
+    </section>
+
+    <a class="next" href="/work/safe-retries/">
+      <span class="label muted">Next case study</span>
+      <span class="serif h3">One enrollment, one order, no matter how many jobs run →</span>
+    </a>
+  </main>
+
+  <footer class="site-footer">
+    <p class="small muted">© 2026 Jacob Ilagan</p>
+    <nav class="nav" aria-label="Footer">
+      <a href="https://github.com/ilaganjacob">GitHub</a>
+      <a href="https://www.linkedin.com/in/jacob-ilagan/">LinkedIn</a>
+      <a href="/order-integrity/">Order Integrity for WooCommerce stores</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

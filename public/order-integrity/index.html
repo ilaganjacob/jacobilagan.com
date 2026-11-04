@@ -391,6 +391,52 @@
     .final { padding: 6rem 0; }
   }
 </style>
+<style>
+  /* Theme layer: matches jacobilagan.com (navy, Newsreader, IBM Plex). Overrides the original styles above. */
+  @font-face { font-family: "Newsreader"; src: url("/fonts/newsreader-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "IBM Plex Sans"; src: url("/fonts/plex-sans-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "IBM Plex Sans"; src: url("/fonts/plex-sans-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: "IBM Plex Sans"; src: url("/fonts/plex-sans-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "IBM Plex Mono"; src: url("/fonts/plex-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  :root {
+    --ink: #141B2E; --ink-2: #3B4766; --muted: #4A5672; --faint: #8A96B4;
+    --line: #D8DCE5; --line-2: #C9CFDB; --bg: #EEF0F3; --card: #FFFFFF; --soft: #E6E9EF;
+    --accent: #1E2F5C; --accent-dark: #17244A; --accent-bright: #3C5AA6; --accent-soft: #E1E6F2;
+    --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    --serif: "Newsreader", Georgia, serif;
+  --radius: 8px;
+  }
+  .plan::before, .plan.featured::before, .final::before { display: none; }
+  .plan .price { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; }
+  .plan.featured { background: #17244A; color: #E6EAF4; }
+  .plan.featured .name, .plan.featured .note, .plan.featured .price small { color: #C9D2E8; }
+  .plan.featured li svg { color: #93A0C2; }
+  .founding { border-radius: 6px; color: #C9D2E8; }
+  .headshot { border-radius: 4px; background: var(--soft); }
+  .tile.flag { background: #F3F5FA; }
+  h1, h2, .statement, .stat-num, .tile .v { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; }
+  h1, h2 { line-height: 1.05; }
+  .statement { line-height: 1.2; }
+  .site-header { background: rgba(238, 240, 243, 0.86); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .brand-mark { border-radius: 4px; }
+  .btn { border-radius: 4px; }
+  .btn-primary { background: var(--accent); box-shadow: none; }
+  .btn-primary:hover { background: var(--accent-dark); box-shadow: none; }
+  .btn-primary::after { display: none; }
+  .hero::before, .hero::after { display: none; }
+  .hero h1 .soft { color: var(--faint); }
+  .pill { border-radius: 4px; background: var(--card); }
+  .pill-dot::after { animation: none; display: none; }
+  .js .split .w { filter: none; }
+  .app { border-radius: 8px; box-shadow: 0 0 0 1px var(--line), 0 24px 48px -24px rgba(20, 27, 46, .28); }
+  .tile { border-radius: 6px; }
+  .tile.flag { background: #F3F5FA; box-shadow: inset 0 0 0 1px rgba(30, 47, 92, .35); }
+  .js .app.live .tile.flag { animation: none; }
+  .row-flag td { background: #F3F5FA; }
+  .problem .ic { border-radius: 4px; }
+  .problem:hover .ic { transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .split .w, .js .fade-up { animation: none; opacity: 1; transform: none; } }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
